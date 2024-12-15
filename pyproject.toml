@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "gutmetrics"
-dynamic = ["version"]
+version = "0.1.2"
 description = "Analysis of blood metabolome prediction of gut microbiome α-diversity in humans"
 authors = ["Trent Leslie <trent.leslie@phenomehealth.org>"]
 readme = "README.md"
@@ -34,7 +34,7 @@ ruff = "^0.1.8"
 mypy = "^1.7.1"
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
+requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.ruff]
@@ -75,8 +75,3 @@ ignore_missing_imports = true
 [tool.pytest.ini_options]
 addopts = "-ra -q --cov=gutmetrics"
 testpaths = ["tests"]
-
-[tool.poetry-dynamic-versioning]
-enable = true
-vcs = "git"
-style = "pep440"
