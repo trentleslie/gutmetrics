@@ -1,0 +1,82 @@
+[tool.poetry]
+name = "gutmetrics"
+dynamic = ["version"]
+description = "Analysis of blood metabolome prediction of gut microbiome α-diversity in humans"
+authors = ["Trent Leslie <trent.leslie@phenomehealth.org>"]
+readme = "README.md"
+packages = [{include = "gutmetrics", from = "src"}]
+license = "Apache-2.0"
+homepage = "https://github.com/yourusername/gutmetrics"
+repository = "https://github.com/yourusername/gutmetrics"
+keywords = ["microbiome", "metabolomics", "bioinformatics"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3.11"
+]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pandas = "^2.1.4"
+numpy = "^1.26.2"
+scikit-learn = "^1.3.2"
+scipy = "^1.11.4"
+seaborn = "^0.13.0"
+matplotlib = "^3.8.2"
+statsmodels = "^0.14.1"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.3"
+pytest-cov = "^4.1.0"
+ruff = "^0.1.8"
+mypy = "^1.7.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+select = ["D211", "D212"]
+ignore = [
+    "D203",  # Remove one-blank-line-before-class in favor of D211
+    "D213",  # Remove multi-line-summary-second-line in favor of D212
+    "COM812",  # Remove trailing comma rule that conflicts with formatter
+    "ISC001",  # Remove implicit string concatenation rule that conflicts with formatter
+]
+
+# Assume Python 3.11
+target-version = "py311"
+
+# Same as Black
+line-length = 88
+
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+# Ignore `F401` (unused imports) in all `__init__.py` files
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401"]
+
+[tool.mypy]
+python_version = "3.11"
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_return_any = true
+warn_unreachable = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+addopts = "-ra -q --cov=gutmetrics"
+testpaths = ["tests"]
+
+[tool.poetry-dynamic-versioning]
+enable = true
+vcs = "git"
+style = "pep440"
